@@ -1,13 +1,14 @@
 #! /bin/bash -ex
 
 echo "Start test"
+./build/go-project-example-server &
+sleep 1
 
-echo "Run the command with Michale"
+curl http://localhost:8000/api/v1/test/ping
+curl http://localhost:8000/api/v1/test/hello
 
-./build/go-project-example-cmd Michale
+curl http://localhost:8000/api/v1/text/echo?message=hi
 
-echo "Run the command with John Josh and Mary"
-
-./build/go-project-example-cmd John Josh Mary
+kill -9 $(jobs -p)
 
 echo "End test"
